@@ -8,13 +8,13 @@ namespace EvaluacionImSoftware.Services
     public class PersonsRepository
     {
         //Contexto de base de datos
-        private MydbEntities db = new MydbEntities();
+        private mydbEntities db = new mydbEntities();
 
 
         public Boolean create(Persona person)
         {
             //Guarda el nuevo modelo
-            Persona entity = db.personas.Add(person);
+            Persona entity = db.Persona.Add(person);
 
             db.SaveChanges();
 
@@ -24,7 +24,7 @@ namespace EvaluacionImSoftware.Services
         public Boolean update(int id, Persona person)
         {
             //Obtiene de la base de datos por id
-            Persona per = db.personas.Find(id);
+            Persona per = db.Persona.Find(id);
 
             //Actualiza el modelo en memoria
             per.nombre = person.nombre;
@@ -39,10 +39,11 @@ namespace EvaluacionImSoftware.Services
         public Boolean delete(int id)
         {
             //Obtiene de la base de datos por id
-            Persona per = db.personas.Find(id);
+            Persona per = db.Persona.Find(id);
 
             //Borrala
-            db.personas.Remove(per);
+            db.Persona.Remove(per);
+            db.SaveChanges();
 
             return true;
         }
@@ -50,23 +51,32 @@ namespace EvaluacionImSoftware.Services
         public Persona get(int id)
         {
             //Obtiene de la base de datos por id
-            Persona per = db.personas.Find(id);
+            Persona per = db.Persona.Find(id);
 
             return per;
         }
 
         public Persona getByName(String name)
         {
-            //Obtiene de la base de datos por id
-            Persona per = (from person in db.personas
-                            where person.nombre == name select person).First();
+            try
+            {
 
-            return per;
+                //Obtiene de la base de datos por nombre
+                Persona per = (from person in db.Persona
+                               where person.nombre == name
+                                select person).First();
 
+                return per;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
         }
         public List<Persona> getAll()
         {
-            return db.personas.ToList();
+            return db.Persona.ToList();
         }
     }
 }

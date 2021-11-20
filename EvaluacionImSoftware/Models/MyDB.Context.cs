@@ -13,18 +13,18 @@ namespace EvaluacionImSoftware.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MydbEntities : DbContext
+    public partial class mydbEntities : DbContext
     {
-        public MydbEntities()
+        public mydbEntities()
             : base("name=mydbEntities")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Persona>().ToTable("Persona");
+            throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Persona> personas { get; set; }
+        public virtual DbSet<Persona> Persona { get; set; }
     }
 }

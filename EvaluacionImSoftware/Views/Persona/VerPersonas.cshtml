@@ -1,7 +1,23 @@
-﻿
+﻿@model EvaluacionImSoftware.Views.ViewModels.VerPersonasViewModel
+
 @{
-    ViewBag.Title = "VerPersonas";
+    ViewBag.Title = "Ver Personas";
 }
 
-<h2>VerPersonas</h2>
+<h2>Ver Personas</h2>
+
+@foreach (var item in Model.personas)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.edad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+    </tr>
+}
 

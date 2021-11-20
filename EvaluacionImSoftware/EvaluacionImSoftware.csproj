@@ -150,7 +150,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\personas.cs">
+    <Compile Include="Models\Persona.cs">
       <DependentUpon>MyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

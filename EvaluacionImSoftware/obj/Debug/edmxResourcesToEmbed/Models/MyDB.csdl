@@ -1,18 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="personas">
+  <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Persona" EntityType="mydbModel.Persona" />
+  </EntityContainer>
+  <EntityType Name="Persona">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="nombre" />
-      <PropertyRef Name="edad" />
-      <PropertyRef Name="email" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="edad" Type="Int32" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="70" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="70" FixedLength="true" Unicode="true" />
   </EntityType>
-  <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="personas" EntityType="Self.personas" />
-  </EntityContainer>
 </Schema>

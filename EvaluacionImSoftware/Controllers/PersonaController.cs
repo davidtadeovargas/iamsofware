@@ -102,36 +102,45 @@ namespace EvaluacionImSoftware.Controllers
             if (personsRepository.get(id) == null)
             {
                 return false;
-
             }
 
             //Actualiza el modelo y retorna el boleano correspondiente
             return personsRepository.update(id,person);
         }
 
-        [HttpDelete]
-        public Boolean delete(int id)
+        [HttpPost]
+        public ActionResult delete(int id)
         {
-            //Si el modelo no existe entonces no hay nada que borrar y regresa FALSE
+            //Si el modelo no existe entonces no hay nada que borrar
             if (personsRepository.get(id)==null)
             {
-                return false;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //Borra el modelo y retorna el boleano correspondiente
-            return personsRepository.delete(id);
+            //Borra el modelo
+            personsRepository.delete(id);
+
+
+            string res_ = "ok";
+            string error = "";
+
+            return Json(new { res = res_, error = error });
         }
 
         [HttpGet]
-        public Persona get(int id)
+        public ActionResult get(int id)
         {
-            return personsRepository.get(id);
+            Persona persona = personsRepository.get(id);
+
+            return Json(new { Data = persona }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public List<Persona> getAll()
+        public ActionResult getAll()
         {
-            return personsRepository.getAll();
+            List<Persona> personas = personsRepository.getAll();
+
+            return Json(new { Data = personas }, JsonRequestBehavior.AllowGet);
         }
     }
 }

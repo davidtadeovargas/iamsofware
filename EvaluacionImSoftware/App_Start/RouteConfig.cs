@@ -20,10 +20,25 @@ namespace EvaluacionImSoftware
             );
 
             routes.MapRoute(
-                name: "Default2",
+                name: "personaCreate",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Persona", action = "create"}
             );
+            routes.MapRoute(
+                name: "personaDelete",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Persona", action = "delete" }
+            );
+            routes.MapRoute(
+               name: "personaGet",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Persona", action = "get" }
+           );
+            routes.MapRoute(
+               name: "personaGetAll",
+               url: "{controller}/{action}",
+               defaults: new { controller = "Persona", action = "getAll" }
+           );
         }
     }
 }
